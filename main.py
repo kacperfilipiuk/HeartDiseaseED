@@ -81,9 +81,10 @@ destination_variable = df['HeartDisease']
 
 data_without_destination_variable = df.drop(columns=['HeartDisease', 'age_cat'])
 
+X_encoded = pd.get_dummies(data_without_destination_variable, drop_first=True)
 # Podzial zbioru na uczacy i testowy
-X_train, X_test, y_train, y_test = train_test_split(data_without_destination_variable, destination_variable,
-                                                    test_size=0.3, random_state=294858, stratify=destination_variable)
+X_train, X_test, y_train, y_test = train_test_split(X_encoded, destination_variable,
+                                                    test_size=0.3, random_state=294858)
 
 print(len(X_train), len(X_test))
 print(y_train.value_counts(normalize=True))
@@ -100,6 +101,20 @@ preprocesor = ColumnTransformer(transformers=
                                  ('cat', OneHotEncoder(handle_unknown='ignore'), sel_cat)]
                                 )
 
+# Skalowanie danych
+scaler = StandardScaler()
+X_train_scaled = scaler.fit_transform(X_train)
+X_test_scaled = scaler.transform(X_test)
+
+# Uczenie modelu MLP
+mlp = MLPClassifier(random_state=294858)
+mlp.fit(X_train_scaled, y_train)
+
+# Generowanie wykresów Partial Dependence
+features_to_plot = [3,4,5]  # Indeksy dla trzech pierwszych cech po kodowaniu
+fig, ax = plt.subplots(figsize=(12, 4))
+PartialDependenceDisplay.from_estimator(mlp, X_train_scaled, features_to_plot, feature_names=X_train.columns, ax=ax, grid_resolution=20)
+plt.show()
 
 # print(pd.DataFrame(tmp, columns=preprocesor.get_feature_names_out()))
 
