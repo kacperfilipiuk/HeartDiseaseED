@@ -518,8 +518,8 @@ def waznosc_predyktorow(drzewo):
 waznosc_predyktorow(forest2.best_estimator_)
 
 
-
-# Metoda wyznaczania lasow losowych - przycinanie drzew
+# Próby przycinania drzew
+# Metoda wyznaczania lasow losowych
 forest3 = RandomForestClassifier(ccp_alpha=0.001, random_state=294858, n_jobs=-1)
 forest3.fit(X_train, y_train)
 
