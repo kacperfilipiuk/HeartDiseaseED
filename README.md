@@ -1,5 +1,8 @@
  # Projekt Prognozowania Chorób Serca
 
+## Założenia projektu
+Projekt był pomysłem na otrzymanie oceny cząstkowej z przedmiotu Eksploracja Danych. Przedstawiony poniższy opis zotał sformatowany na potrzeby przedstawienia problemu użytkownikowi, sposobu dedukcji i dojścia do rozwiązania problemu.
+
 ## Opis Danych
 Plik `heart.csv` zawiera dane pacjentów kardiologicznych. Celem projektu jest budowa modelu przewidującego wystąpienie choroby serca u pacjenta. Zbiór danych zawiera 918 rekordów.
 
@@ -33,6 +36,3 @@ Zmienną celu jest `HeartDisease`, która przyjmuje jedną z dwóch wartości: b
 3. Zanalizuj wyniki i omów ewentualne problemy.
 4. W przypadku przeuczenia, zbuduj poprawiony model.
 5. Porównaj modele i zdecyduj, który jest lepszy.
-
-## Wnioski
-Podsumuj wyniki analiz i wnioski dotyczące modelowania chorób serca.
